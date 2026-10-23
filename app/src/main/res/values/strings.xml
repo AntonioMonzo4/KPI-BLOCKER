@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bloqueador de Apps</string>
+
+    <!-- Pantalla principal: servicio y permisos -->
+    <string name="service_title">Servicio de bloqueo</string>
+    <string name="service_subtitle">Vigila las apps y muestra la pantalla de bloqueo</string>
+    <string name="perm_usage_title">Acceso al uso de apps</string>
+    <string name="perm_notif_title">Notificaciones</string>
+    <string name="perm_battery_title">Sin restricciones de batería</string>
+    <string name="grant">Conceder</string>
+    <string name="status_granted">Concedido</string>
+    <string name="status_not_granted">No concedido</string>
+    <string name="usage_dialog_title">Se necesita acceso de uso</string>
+    <string name="usage_dialog_message">Para saber qué aplicación estás usando, el bloqueador necesita acceso al uso de aplicaciones. Actívalo en el siguiente pantalla.</string>
+    <string name="usage_dialog_go">Abrir ajustes</string>
+    <string name="notif_denied">Sin notificaciones el sistema puede detener el servicio. Concédelas para un bloqueo fiable.</string>
+    <string name="notif_legacy_ok">Las notificaciones no necesitan permiso en esta versión de Android.</string>
+    <string name="battery_error">No se pudo abrir el ajuste de batería.</string>
+    <string name="service_started">Bloqueo activado</string>
+    <string name="service_stopped">Bloqueo desactivado</string>
+    <string name="pin_disable_service">Introduce el PIN para desactivar el bloqueo</string>
+
+    <!-- Aplicaciones -->
+    <string name="apps_section_title">Aplicaciones bloqueadas</string>
+    <string name="apps_count">Bloqueadas: %1$d de %2$d aplicaciones</string>
+    <string name="apps_search_hint">Buscar aplicación</string>
+
+    <!-- Horarios -->
+    <string name="schedules_section_title">Horarios</string>
+    <string name="schedule_hint">Las apps se bloquean solo dentro de estos horarios.</string>
+    <string name="schedule_empty_hint">Sin horarios configurados: las apps seleccionadas se bloquean siempre. Añade un horario para limitar el bloqueo a horas concretas.</string>
+    <string name="schedule_add">Añadir horario</string>
+    <string name="schedule_add_title">Nuevo horario</string>
+    <string name="schedule_edit_title">Editar horario</string>
+    <string name="schedule_name_hint">Nombre del horario</string>
+    <string name="schedule_default_name">Horario</string>
+    <string name="schedule_days">Días</string>
+    <string name="schedule_start">Inicio: %1$s</string>
+    <string name="schedule_end">Fin: %1$s</string>
+    <string name="schedule_start_title">Hora de inicio</string>
+    <string name="schedule_end_title">Hora de fin</string>
+    <string name="schedule_days_error">Selecciona al menos un día</string>
+    <string name="schedule_delete_title">Eliminar horario</string>
+    <string name="schedule_delete_message">¿Eliminar el horario «%1$s»?</string>
+    <string name="day_lun">Lun</string>
+    <string name="day_mar">Mar</string>
+    <string name="day_mie">Mié</string>
+    <string name="day_jue">Jue</string>
+    <string name="day_vie">Vie</string>
+    <string name="day_sab">Sáb</string>
+    <string name="day_dom">Dom</string>
+
+    <!-- PIN -->
+    <string name="pin_section_title">Protección con PIN</string>
+    <string name="pin_inactive">Sin PIN: cualquiera con el móvil puede desactivar el bloqueo.</string>
+    <string name="pin_active">PIN activo: se pide para desactivar el bloqueo o desbloquear temporalmente.</string>
+    <string name="pin_create">Crear PIN</string>
+    <string name="pin_change">Cambiar PIN</string>
+    <string name="pin_create_title">Crear PIN</string>
+    <string name="pin_change_title">Cambiar PIN</string>
+    <string name="pin_new">Nuevo PIN (4 a 6 dígitos)</string>
+    <string name="pin_confirm">Repite el PIN</string>
+    <string name="pin_hint">Introduce el PIN</string>
+    <string name="pin_wrong">PIN incorrecto</string>
+    <string name="pin_length_error">El PIN debe tener entre 4 y 6 dígitos</string>
+    <string name="pin_mismatch">Los PIN no coinciden</string>
+    <string name="pin_saved">PIN guardado</string>
+    <string name="pin_remove">Quitar PIN</string>
+    <string name="pin_remove_title">Quitar PIN</string>
+    <string name="pin_removed">PIN eliminado</string>
+
+    <!-- Pantalla de bloqueo -->
+    <string name="blocked_title">Esta aplicación está bloqueada</string>
+    <string name="blocked_title_named">«%1$s» está bloqueada</string>
+    <string name="blocked_message">Es momento de concentrarte. Vuelve cuando termine el horario.</string>
+    <string name="blocked_unlock_at">Se desbloquea a las %1$s</string>
+    <string name="blocked_paused_until">Bloqueo en pausa hasta las %1$s</string>
+    <string name="blocked_permanent">Bloqueo permanente hasta que cambies la configuración</string>
+    <string name="unlock_temporarily">Desbloquear 10 min</string>
+    <string name="unlock_dialog_title">Desbloqueo temporal</string>
+    <string name="unlock_no_pin_title">No hay PIN configurado</string>
+    <string name="unlock_no_pin_message">Crea un PIN en la pantalla principal para poder desbloquear temporalmente desde aquí.</string>
+    <string name="exit_to_home">Salir al inicio</string>
+
+    <!-- Genéricos -->
+    <string name="ok">Aceptar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="save">Guardar</string>
+    <string name="delete">Eliminar</string>
+    <string name="edit">Editar</string>
+    <string name="main_footer">Funciona mejor si desactivas la optimización de batería para esta app.</string>
+</resources>
