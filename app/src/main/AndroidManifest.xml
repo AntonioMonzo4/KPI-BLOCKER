@@ -9,6 +9,8 @@
     <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
         tools:ignore="QueryAllPackagesPermission" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <!-- Imprescindible en Android 12+ para que el servicio pueda mostrar la pantalla de bloqueo -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <!-- Servicio en primer plano -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />

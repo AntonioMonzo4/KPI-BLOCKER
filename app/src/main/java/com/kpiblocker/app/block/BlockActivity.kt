@@ -21,9 +21,22 @@ class BlockActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_PACKAGE = "blocked_package"
         private const val PAUSE_MINUTES = 10L
+
+        @Volatile
+        var isShowing: Boolean = false
     }
 
     private var blockedPackage: String? = null
+
+    override fun onResume() {
+        super.onResume()
+        isShowing = true
+    }
+
+    override fun onPause() {
+        isShowing = false
+        super.onPause()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

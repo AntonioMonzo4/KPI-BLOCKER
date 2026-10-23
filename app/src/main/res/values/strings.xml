@@ -7,7 +7,11 @@
     <string name="service_subtitle">Vigila las apps y muestra la pantalla de bloqueo</string>
     <string name="perm_usage_title">Acceso al uso de apps</string>
     <string name="perm_notif_title">Notificaciones</string>
+    <string name="perm_overlay_title">Pantalla superpuesta</string>
     <string name="perm_battery_title">Sin restricciones de batería</string>
+    <string name="overlay_dialog_title">Se necesita "Mostrar sobre otras apps"</string>
+    <string name="overlay_dialog_message">Sin este permiso, Android 12 o superior impide que aparezca la pantalla de bloqueo. Actívalo en el siguiente pantalla para el Bloqueador de Apps.</string>
+    <string name="overlay_dialog_go">Abrir ajustes</string>
     <string name="grant">Conceder</string>
     <string name="status_granted">Concedido</string>
     <string name="status_not_granted">No concedido</string>

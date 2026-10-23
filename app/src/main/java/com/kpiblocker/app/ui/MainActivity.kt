@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var serviceSwitch: MaterialSwitch
     private lateinit var usageStatus: TextView
     private lateinit var notifStatus: TextView
+    private lateinit var overlayStatus: TextView
     private lateinit var batteryStatus: TextView
     private lateinit var appsCount: TextView
     private lateinit var scheduleHint: TextView
@@ -66,6 +67,7 @@ class MainActivity : AppCompatActivity() {
         serviceSwitch = findViewById(R.id.serviceSwitch)
         usageStatus = findViewById(R.id.usageStatus)
         notifStatus = findViewById(R.id.notifStatus)
+        overlayStatus = findViewById(R.id.overlayStatus)
         batteryStatus = findViewById(R.id.batteryStatus)
         appsCount = findViewById(R.id.appsCount)
         scheduleHint = findViewById(R.id.scheduleHint)
@@ -103,6 +105,18 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, R.string.notif_legacy_ok, Toast.LENGTH_SHORT).show()
             }
         }
+        findViewById<Button>(R.id.btnOverlay).setOnClickListener {
+            try {
+                startActivity(
+                    Intent(
+                        Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                        Uri.parse("package:$packageName")
+                    )
+                )
+            } catch (_: Exception) {
+                startActivity(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION))
+            }
+        }
         findViewById<Button>(R.id.btnBattery).setOnClickListener {
             val intent = Intent(
                 Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS,
@@ -119,6 +133,7 @@ class MainActivity : AppCompatActivity() {
     private fun updatePermissionRows() {
         usageStatus.text = statusText(hasUsageAccess())
         notifStatus.text = statusText(notificationsGranted())
+        overlayStatus.text = statusText(Settings.canDrawOverlays(this))
         batteryStatus.text = statusText(isIgnoringBatteryOptimizations())
     }
 
@@ -172,6 +187,23 @@ class MainActivity : AppCompatActivity() {
                         .setMessage(R.string.usage_dialog_message)
                         .setPositiveButton(R.string.usage_dialog_go) { _, _ ->
                             startActivity(Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS))
+                        }
+                        .setNegativeButton(R.string.cancel, null)
+                        .show()
+                    return@setOnCheckedChangeListener
+                }
+                if (!Settings.canDrawOverlays(this)) {
+                    syncServiceSwitch()
+                    MaterialAlertDialogBuilder(this)
+                        .setTitle(R.string.overlay_dialog_title)
+                        .setMessage(R.string.overlay_dialog_message)
+                        .setPositiveButton(R.string.overlay_dialog_go) { _, _ ->
+                            startActivity(
+                                Intent(
+                                    Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                                    Uri.parse("package:$packageName")
+                                )
+                            )
                         }
                         .setNegativeButton(R.string.cancel, null)
                         .show()

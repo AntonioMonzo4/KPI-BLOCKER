@@ -37,7 +37,7 @@ class BlockService : Service() {
     }
 
     private val handler = Handler(Looper.getMainLooper())
-    private var lastTarget: String? = null
+    private var lastLaunchAt = 0L
 
     private val pollRunnable = object : Runnable {
         override fun run() {
@@ -119,34 +119,29 @@ class BlockService : Service() {
         }
 
         val now = System.currentTimeMillis()
-        if (now < Prefs.pauseUntil) {
-            lastTarget = null
-            return
-        }
+        if (now < Prefs.pauseUntil) return
 
         val fg = currentForegroundPackage() ?: return
         if (fg == packageName) return
+        if (fg == homePackage() || fg == "com.android.systemui") return
 
-        if (fg == homePackage() || fg == "com.android.systemui") {
-            lastTarget = null
-            return
-        }
-
-        if (fg == lastTarget) return
-
-        if (BlockRules.isBlockedNow(this, fg)) {
-            lastTarget = fg
-            startActivity(
-                Intent(this, BlockActivity::class.java)
-                    .putExtra(BlockActivity.EXTRA_PACKAGE, fg)
-                    .addFlags(
-                        Intent.FLAG_ACTIVITY_NEW_TASK or
-                            Intent.FLAG_ACTIVITY_CLEAR_TOP or
-                            Intent.FLAG_ACTIVITY_SINGLE_TOP
-                    )
-            )
-        } else {
-            lastTarget = null
+        if (BlockRules.isBlockedNow(this, fg) && !BlockActivity.isShowing) {
+            // Evita relanzar en cada ciclo del sondeo (la actividad tarda en quedar visible)
+            if (now - lastLaunchAt < 800L) return
+            lastLaunchAt = now
+            try {
+                startActivity(
+                    Intent(this, BlockActivity::class.java)
+                        .putExtra(BlockActivity.EXTRA_PACKAGE, fg)
+                        .addFlags(
+                            Intent.FLAG_ACTIVITY_NEW_TASK or
+                                Intent.FLAG_ACTIVITY_CLEAR_TOP or
+                                Intent.FLAG_ACTIVITY_SINGLE_TOP
+                        )
+                )
+            } catch (_: Exception) {
+                // Sin permiso de pantalla superpuesta Android 12+ puede rechazar el inicio
+            }
         }
     }
 
